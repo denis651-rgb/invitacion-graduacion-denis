@@ -24,10 +24,10 @@ body {
   min-height: 100vh;
   margin: 0;
   background:
-    radial-gradient(circle at top left, rgba(216, 183, 108, 0.18), transparent 34rem),
-    radial-gradient(circle at bottom right, rgba(23, 54, 93, 0.8), transparent 30rem),
+    radial-gradient(circle at top left, rgba(216, 183, 108, 0.14), transparent 30rem),
+    radial-gradient(circle at bottom right, rgba(23, 54, 93, 0.55), transparent 28rem),
     linear-gradient(160deg, #06111f 0%, #0a1830 48%, #06111f 100%);
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  font-family: Montserrat, ui-sans-serif, system-ui, sans-serif;
 }
 
 a {
@@ -41,8 +41,26 @@ a {
 
 .paper-texture {
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(247, 240, 223, 0.98)),
-    radial-gradient(circle at 20% 10%, rgba(216, 183, 108, 0.2), transparent 16rem);
+    radial-gradient(circle at 18% 8%, rgba(216, 183, 108, 0.16), transparent 11rem),
+    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.8), transparent 9rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 240, 223, 0.99));
+}
+
+.paper-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.11;
+  background-image:
+    linear-gradient(90deg, rgba(6, 17, 31, 0.08) 1px, transparent 1px),
+    linear-gradient(rgba(6, 17, 31, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mix-blend-mode: multiply;
+}
+
+.paper-texture > * {
+  position: relative;
 }
 
 .sparkle {

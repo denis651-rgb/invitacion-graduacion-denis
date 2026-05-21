@@ -15,8 +15,10 @@ export default {
         gold: "#c9a24c"
       },
       fontFamily: {
-        display: ["Georgia", "Cambria", "Times New Roman", "serif"],
-        body: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"]
+        script: ["Great Vibes", "cursive"],
+        title: ["Playfair Display", "serif"],
+        elegant: ["Cormorant Garamond", "serif"],
+        body: ["Montserrat", "sans-serif"]
       },
       boxShadow: {
         soft: "0 24px 70px rgba(0, 0, 0, 0.28)",

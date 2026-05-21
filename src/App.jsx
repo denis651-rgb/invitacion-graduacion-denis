@@ -47,7 +47,7 @@ function Countdown() {
 
   if (remaining <= 0) {
     return (
-      <div className="rounded-2xl border border-gold/40 bg-navy-900 px-5 py-4 text-center text-lg font-semibold text-ivory shadow-gold">
+      <div className="rounded-2xl border border-gold/40 bg-ivory px-5 py-4 text-center text-lg font-semibold text-navy-950 shadow-gold">
         El gran día ha llegado
       </div>
     );
@@ -69,12 +69,12 @@ function Countdown() {
       {items.map(([label, value]) => (
         <div
           key={label}
-          className="rounded-xl border border-gold/35 bg-navy-950 px-2 py-3 text-center shadow-inner"
+          className="rounded-xl border border-gold/35 bg-white/65 px-2 py-3 text-center shadow-inner"
         >
-          <div className="font-display text-2xl font-bold text-champagne">
+          <div className="font-title text-2xl font-semibold text-navy-950">
             {String(value).padStart(2, "0")}
           </div>
-          <div className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ivory/70">
+          <div className="mt-1 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-navy-700">
             {label}
           </div>
         </div>
@@ -98,7 +98,7 @@ function SectionCard({ icon: Icon, title, children, className = "" }) {
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 text-champagne shadow-gold">
           <Icon size={22} strokeWidth={1.8} />
         </div>
-        <h2 className="font-display text-2xl font-bold text-navy-950">{title}</h2>
+        <h2 className="font-title text-3xl font-semibold tracking-wide text-navy-950">{title}</h2>
       </div>
       {children}
     </motion.section>
@@ -111,7 +111,7 @@ function ExternalButton({ href, icon: Icon, children }) {
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="mt-5 flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl bg-navy-900 px-5 py-4 text-center text-sm font-bold uppercase tracking-[0.12em] text-ivory shadow-gold transition duration-300 hover:-translate-y-0.5 hover:bg-navy-800 focus:outline-none focus:ring-2 focus:ring-champagne"
+      className="mt-5 flex min-h-14 w-full items-center justify-center gap-3 rounded-2xl bg-navy-900 px-5 py-4 text-center font-body text-sm font-semibold uppercase tracking-[0.12em] text-ivory shadow-gold transition duration-300 hover:-translate-y-0.5 hover:bg-navy-800 focus:outline-none focus:ring-2 focus:ring-champagne"
     >
       <Icon size={20} />
       {children}
@@ -131,7 +131,7 @@ function ImageWithFallback({ src, alt, type }) {
       <div className="flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-[2rem] border border-champagne/60 bg-gradient-to-br from-navy-800 via-navy-950 to-black shadow-gold">
         <div className="text-center">
           <GraduationCap className="mx-auto text-champagne" size={70} strokeWidth={1.3} />
-          <p className="mt-4 px-8 font-display text-2xl font-bold text-ivory">
+          <p className="mt-4 px-8 font-title text-2xl font-semibold text-ivory">
             Foto del graduado
           </p>
           <p className="mt-2 px-8 text-xs uppercase tracking-[0.2em] text-ivory/65">
@@ -158,9 +158,9 @@ function ImageWithFallback({ src, alt, type }) {
 
 function App() {
   return (
-    <main className="min-h-screen px-4 py-6 text-ivory">
-      <div className="mx-auto max-w-[430px] overflow-hidden rounded-[2rem] border border-champagne/30 bg-navy-950/70 shadow-soft backdrop-blur">
-        <div className="relative px-5 pb-8 pt-7">
+    <main className="min-h-screen px-4 py-6 text-navy-950">
+      <div className="mx-auto max-w-[430px] overflow-hidden rounded-[2rem] border border-champagne/45 bg-ivory/95 shadow-soft backdrop-blur">
+        <div className="paper-texture relative mx-4 mt-4 rounded-[1.6rem] border border-champagne/45 px-5 pb-8 pt-7 shadow-gold">
           <div className="absolute inset-0 opacity-35">
             <div className="absolute left-6 top-16 h-1 w-1 rounded-full bg-champagne sparkle" />
             <div className="absolute right-10 top-28 h-1.5 w-1.5 rounded-full bg-champagne sparkle" />
@@ -178,13 +178,13 @@ function App() {
               <ImageWithFallback src={finiLogo} alt="Logo FINI" type="logo" />
             </div>
             <div className="gold-line mx-auto mb-5 h-px w-44" />
-            <p className="text-sm font-semibold uppercase tracking-[0.32em] text-champagne">
+            <p className="font-title text-base font-semibold uppercase tracking-[0.32em] text-gold">
               Mi Graduación
             </p>
-            <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-ivory">
+            <h1 className="mt-3 font-script text-5xl leading-tight tracking-wide text-gold sm:text-6xl">
               Ing. Denis Guarayo
             </h1>
-            <p className="mx-auto mt-3 max-w-xs text-sm leading-6 text-ivory/78">
+            <p className="mx-auto mt-3 max-w-xs font-elegant text-lg font-semibold leading-7 tracking-wide text-navy-900">
               Graduación de Ingeniería en Sistemas
             </p>
           </motion.header>
@@ -197,30 +197,30 @@ function App() {
           >
             {/* Coloca la foto final en src/assets/foto-denis.png para reemplazar este placeholder. */}
             <ImageWithFallback src={denisPhoto} alt="Ing. Denis Guarayo" />
-            <div className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-champagne/60 bg-navy-950 px-5 py-3 text-sm font-semibold text-champagne shadow-gold">
+            <div className="absolute -bottom-5 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-full border border-champagne/70 bg-ivory px-5 py-3 text-sm font-semibold text-navy-950 shadow-gold">
               <GraduationCap size={20} />
               Promoción 2026
             </div>
           </motion.div>
         </div>
 
-        <div className="space-y-5 px-4 pb-8">
+        <div className="space-y-4 px-4 pb-8">
           <motion.section
             variants={fadeIn}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            className="relative mt-5 overflow-hidden rounded-[1.6rem] border border-champagne/45 bg-ivory p-6 text-center text-navy-950 shadow-soft"
+            className="paper-texture relative mt-2 overflow-hidden rounded-[1.6rem] border border-champagne/45 px-6 py-5 text-center text-navy-950 shadow-soft"
           >
             <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-champagne/24 to-transparent" />
             <ScrollText className="relative mx-auto text-gold" size={34} strokeWidth={1.5} />
-            <p className="relative mt-4 font-display text-2xl font-bold leading-snug">
+            <p className="relative mt-3 font-elegant text-2xl font-semibold leading-snug tracking-wide">
               Tengo el honor de invitarte a compartir conmigo este logro profesional.
             </p>
           </motion.section>
 
           <SectionCard icon={Sparkles} title="Invitación">
-            <div className="space-y-4 text-[0.98rem] leading-7 text-navy-900">
+            <div className="space-y-4 font-body text-[0.98rem] leading-relaxed text-navy-900">
               <p>
                 Con profunda alegría y gratitud, tengo el honor de invitarte a compartir conmigo
                 un momento muy especial: mi graduación profesional en Ingeniería en Sistemas.
@@ -244,7 +244,7 @@ function App() {
 
           <SectionCard icon={Calendar} title="Fecha y Hora">
             <div className="rounded-2xl border border-gold/35 bg-white/55 p-4 text-center">
-              <p className="font-display text-3xl font-bold text-navy-950">
+              <p className="font-title text-3xl font-semibold tracking-wide text-navy-950">
                 Viernes 19 de junio de 2026
               </p>
               <p className="mt-3 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-[0.15em] text-navy-800">
@@ -258,7 +258,7 @@ function App() {
           </SectionCard>
 
           <SectionCard icon={MapPin} title="Acto">
-            <p className="font-display text-2xl font-bold text-navy-950">Acto de Graduación</p>
+            <p className="font-title text-3xl font-semibold tracking-wide text-navy-950">Acto de Graduación</p>
             <p className="mt-2 text-base leading-7 text-navy-800">Facultad Integral Ichilo FINI</p>
             <ExternalButton href={ACT_MAP_URL} icon={MapPin}>
               Ver ubicación del acto
@@ -266,7 +266,7 @@ function App() {
           </SectionCard>
 
           <SectionCard icon={Gift} title="Recepción">
-            <p className="font-display text-2xl font-bold text-navy-950">Recepción</p>
+            <p className="font-title text-3xl font-semibold tracking-wide text-navy-950">Recepción</p>
             <p className="mt-2 flex items-center gap-2 font-semibold text-navy-800">
               <Clock size={18} />
               20:00 hrs
@@ -298,14 +298,14 @@ function App() {
             className="rounded-[1.6rem] border border-champagne/45 bg-navy-900 p-7 text-center shadow-gold"
           >
             <GraduationCap className="mx-auto text-champagne" size={38} strokeWidth={1.5} />
-            <p className="mt-4 font-display text-2xl font-bold text-ivory">
+            <p className="mt-4 font-title text-2xl font-semibold tracking-wide text-ivory">
               Gracias por formar parte de este momento tan especial.
             </p>
             <p className="mt-3 text-sm leading-6 text-ivory/75">
               Será un honor contar con tu presencia.
             </p>
             <div className="gold-line mx-auto my-5 h-px w-36" />
-            <p className="font-display text-2xl font-bold text-champagne">Ing. Denis Guarayo</p>
+            <p className="font-script text-4xl tracking-wide text-champagne">Ing. Denis Guarayo</p>
           </motion.footer>
         </div>
       </div>

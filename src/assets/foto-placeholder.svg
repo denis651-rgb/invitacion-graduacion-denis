@@ -6,7 +6,7 @@
   <path d="M322 342V388C345 414 374 427 400 427C426 427 455 414 478 388V342" stroke="#D8B76C" stroke-width="14" stroke-linecap="round"/>
   <path d="M530 308V390" stroke="#D8B76C" stroke-width="12" stroke-linecap="round"/>
   <circle cx="530" cy="414" r="12" fill="#D8B76C"/>
-  <text x="400" y="590" text-anchor="middle" font-family="Georgia, serif" font-size="56" font-weight="700" fill="#F7F0DF">Foto del graduado</text>
+  <text x="400" y="590" text-anchor="middle" font-family="Playfair Display, serif" font-size="56" font-weight="700" fill="#F7F0DF">Foto del graduado</text>
   <text x="400" y="648" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" letter-spacing="8" fill="#F7F0DF" opacity="0.72">COLOCAR FOTO-DENIS.PNG</text>
   <path d="M220 730H580" stroke="#D8B76C" stroke-width="3"/>
   <path d="M270 768H530" stroke="#D8B76C" stroke-width="2" opacity="0.55"/>
