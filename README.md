@@ -35,13 +35,14 @@ El resultado se genera en `dist/`.
 
 ## Publicar en Vercel
 
-1. Sube este proyecto a GitHub.
+1. Sube este proyecto a GitHub desde la raiz del repositorio.
 2. En Vercel, elige **Add New Project**.
 3. Importa el repositorio.
 4. Usa la configuracion por defecto:
    - Framework Preset: Vite
    - Build Command: `npm run build`
    - Output Directory: `dist`
+   - Root Directory: dejar vacio o usar `./`
 5. Publica el proyecto.
 
 ## Datos incluidos
