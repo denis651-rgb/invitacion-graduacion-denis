@@ -1,0 +1,13 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="1000" fill="#071426"/>
+  <rect x="28" y="28" width="744" height="944" rx="54" stroke="#D8B76C" stroke-width="5"/>
+  <circle cx="400" cy="320" r="120" fill="#0F2544" stroke="#D8B76C" stroke-width="5"/>
+  <path d="M270 308L400 242L530 308L400 374L270 308Z" stroke="#D8B76C" stroke-width="14" stroke-linejoin="round"/>
+  <path d="M322 342V388C345 414 374 427 400 427C426 427 455 414 478 388V342" stroke="#D8B76C" stroke-width="14" stroke-linecap="round"/>
+  <path d="M530 308V390" stroke="#D8B76C" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="530" cy="414" r="12" fill="#D8B76C"/>
+  <text x="400" y="590" text-anchor="middle" font-family="Georgia, serif" font-size="56" font-weight="700" fill="#F7F0DF">Foto del graduado</text>
+  <text x="400" y="648" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" letter-spacing="8" fill="#F7F0DF" opacity="0.72">COLOCAR FOTO-DENIS.PNG</text>
+  <path d="M220 730H580" stroke="#D8B76C" stroke-width="3"/>
+  <path d="M270 768H530" stroke="#D8B76C" stroke-width="2" opacity="0.55"/>
+</svg>
