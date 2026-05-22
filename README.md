@@ -22,8 +22,11 @@ Coloca las imagenes finales en:
 
 - `src/assets/foto-denis.png`
 - `src/assets/logo-fini.png`
+- `public/preview-invitacion.jpg`
 
 Si aun no estan disponibles, la invitacion muestra placeholders visuales elegantes para mantener el diseno completo.
+
+La imagen `public/preview-invitacion.jpg` se usa para la vista previa en WhatsApp y redes sociales. Idealmente debe medir 1200x630 px.
 
 ## Build de produccion
 
