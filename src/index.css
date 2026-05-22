@@ -40,10 +40,13 @@ a {
 }
 
 .paper-texture {
-  background:
-    radial-gradient(circle at 18% 8%, rgba(216, 183, 108, 0.16), transparent 11rem),
-    radial-gradient(circle at 86% 12%, rgba(255, 255, 255, 0.8), transparent 9rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(247, 240, 223, 0.99));
+  background-color: #fffaf0;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(214, 178, 94, 0.08) 0, transparent 25%),
+    radial-gradient(circle at 80% 10%, rgba(7, 26, 51, 0.04) 0, transparent 20%),
+    radial-gradient(circle at 40% 80%, rgba(214, 178, 94, 0.06) 0, transparent 30%),
+    radial-gradient(circle at 12% 92%, rgba(7, 26, 51, 0.035) 0, transparent 18%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(214, 178, 94, 0.08));
 }
 
 .paper-texture::before {
@@ -61,6 +64,46 @@ a {
 
 .paper-texture > * {
   position: relative;
+}
+
+.paper-real {
+  background-color: #fffaf0;
+  background-image:
+    linear-gradient(rgba(255, 250, 240, 0.82), rgba(248, 241, 223, 0.86)),
+    url("/textures/paper-texture.jpg"),
+    radial-gradient(circle at 20% 20%, rgba(214, 178, 94, 0.08) 0, transparent 25%),
+    radial-gradient(circle at 80% 10%, rgba(7, 26, 51, 0.04) 0, transparent 20%),
+    linear-gradient(135deg, #fffaf0, #f4ead2);
+  background-size: cover, cover, auto, auto, auto;
+  background-position: center;
+  background-repeat: repeat;
+  border: 1px solid rgba(214, 178, 94, 0.45);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.18),
+    0 4px 10px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 0 0 1px rgba(214, 178, 94, 0.28);
+}
+
+.paper-shadow {
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px rgba(214, 178, 94, 0.35);
+}
+
+.paper-corner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 42px;
+  height: 42px;
+  border-bottom-left-radius: 16px;
+  background:
+    linear-gradient(135deg, rgba(255, 250, 240, 0) 0 48%, rgba(194, 151, 61, 0.2) 49%, rgba(244, 234, 210, 0.72) 100%);
+  box-shadow: -5px 5px 12px rgba(7, 26, 51, 0.08);
+  pointer-events: none;
 }
 
 .sparkle {

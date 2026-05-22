@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   Calendar,
@@ -7,6 +7,8 @@ import {
   GraduationCap,
   MapPin,
   MessageCircle,
+  Pause,
+  Play,
   ScrollText,
   Sparkles
 } from "lucide-react";
@@ -69,7 +71,7 @@ function Countdown() {
       {items.map(([label, value]) => (
         <div
           key={label}
-          className="rounded-xl border border-gold/35 bg-white/65 px-2 py-3 text-center shadow-inner"
+          className="rounded-xl border border-gold/35 bg-[#fffaf0]/70 px-2 py-3 text-center shadow-inner"
         >
           <div className="font-title text-2xl font-semibold text-navy-950">
             {String(value).padStart(2, "0")}
@@ -90,10 +92,11 @@ function SectionCard({ icon: Icon, title, children, className = "" }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.25 }}
-      className={`paper-texture relative overflow-hidden rounded-[1.6rem] border border-champagne/55 p-6 text-navy-950 shadow-soft ${className}`}
+      className={`paper-texture paper-real paper-corner relative overflow-hidden rounded-[1.6rem] p-6 text-navy-950 ${className}`}
     >
-      <div className="absolute left-4 right-4 top-3 h-px bg-gold/50" />
-      <div className="absolute bottom-3 left-4 right-4 h-px bg-gold/35" />
+      <div className="absolute inset-3 rounded-[1.2rem] border border-gold/20" />
+      <div className="absolute left-5 right-5 top-4 h-px bg-gold/50" />
+      <div className="absolute bottom-4 left-5 right-5 h-px bg-gold/30" />
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-11 w-11 items-center justify-center rounded-full bg-navy-900 text-champagne shadow-gold">
           <Icon size={22} strokeWidth={1.8} />
@@ -157,10 +160,49 @@ function ImageWithFallback({ src, alt, type }) {
 }
 
 function App() {
+  const audioRef = useRef(null);
+  const isDraggingMusicButton = useRef(false);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
+  const handleMusicToggle = async (event) => {
+    if (isDraggingMusicButton.current) {
+      event.preventDefault();
+      return;
+    }
+
+    const audio = audioRef.current;
+
+    if (!audio) {
+      return;
+    }
+
+    if (isMusicPlaying) {
+      audio.pause();
+      setIsMusicPlaying(false);
+      return;
+    }
+
+    try {
+      await audio.play();
+      setIsMusicPlaying(true);
+    } catch (error) {
+      console.error("No se pudo reproducir la música:", error);
+    }
+  };
+
   return (
     <main className="min-h-screen px-4 py-6 text-navy-950">
-      <div className="mx-auto max-w-[430px] overflow-hidden rounded-[2rem] border border-champagne/45 bg-ivory/95 shadow-soft backdrop-blur">
-        <div className="paper-texture relative mx-4 mt-4 rounded-[1.6rem] border border-champagne/45 px-5 pb-8 pt-7 shadow-gold">
+      <audio
+        ref={audioRef}
+        src="/audio/musica-graduacion.mp3"
+        loop
+        preload="auto"
+        onPlay={() => setIsMusicPlaying(true)}
+        onPause={() => setIsMusicPlaying(false)}
+      />
+      <div className="mx-auto max-w-[430px] overflow-hidden rounded-[2rem] border border-champagne/45 bg-[#f4ead2] shadow-soft backdrop-blur">
+        <div className="paper-texture paper-real paper-corner relative mx-4 mt-4 rounded-[1.6rem] px-5 pb-8 pt-7">
+          <div className="absolute inset-3 rounded-[1.2rem] border border-gold/20" />
           <div className="absolute inset-0 opacity-35">
             <div className="absolute left-6 top-16 h-1 w-1 rounded-full bg-champagne sparkle" />
             <div className="absolute right-10 top-28 h-1.5 w-1.5 rounded-full bg-champagne sparkle" />
@@ -210,9 +252,12 @@ function App() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            className="paper-texture relative mt-2 overflow-hidden rounded-[1.6rem] border border-champagne/45 px-6 py-5 text-center text-navy-950 shadow-soft"
+            className="paper-texture paper-real paper-corner relative mt-2 overflow-hidden rounded-[1.6rem] px-6 py-5 text-center text-navy-950"
           >
-            <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-champagne/24 to-transparent" />
+            <div className="absolute inset-3 rounded-[1.2rem] border border-gold/20" />
+            <div className="absolute inset-x-5 top-4 h-px bg-gold/40" />
+            <div className="absolute inset-x-5 bottom-4 h-px bg-gold/25" />
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-champagne/20 to-transparent" />
             <ScrollText className="relative mx-auto text-gold" size={34} strokeWidth={1.5} />
             <p className="relative mt-3 font-elegant text-2xl font-semibold leading-snug tracking-wide">
               Tengo el honor de invitarte a compartir conmigo este logro profesional.
@@ -220,7 +265,7 @@ function App() {
           </motion.section>
 
           <SectionCard icon={Sparkles} title="Invitación">
-            <div className="space-y-4 font-body text-[0.98rem] leading-relaxed text-navy-900">
+            <div className="space-y-5 font-body text-[0.98rem] leading-relaxed text-navy-900">
               <p>
                 Con profunda alegría y gratitud, tengo el honor de invitarte a compartir conmigo
                 un momento muy especial: mi graduación profesional en Ingeniería en Sistemas.
@@ -243,7 +288,7 @@ function App() {
           </SectionCard>
 
           <SectionCard icon={Calendar} title="Fecha y Hora">
-            <div className="rounded-2xl border border-gold/35 bg-white/55 p-4 text-center">
+            <div className="rounded-2xl border border-gold/35 bg-[#fffaf0]/70 p-4 text-center">
               <p className="font-title text-3xl font-semibold tracking-wide text-navy-950">
                 Viernes 19 de junio de 2026
               </p>
@@ -257,8 +302,8 @@ function App() {
             </div>
           </SectionCard>
 
-          <SectionCard icon={MapPin} title="Acto">
-            <p className="font-title text-3xl font-semibold tracking-wide text-navy-950">Acto de Graduación</p>
+          <SectionCard icon={MapPin} title="Acto de Graduacion">
+            <p className="font-title text-3xl font-semibold tracking-wide text-navy-950"></p>
             <p className="mt-2 text-base leading-7 text-navy-800">Facultad Integral Ichilo FINI</p>
             <ExternalButton href={ACT_MAP_URL} icon={MapPin}>
               Ver ubicación del acto
@@ -266,7 +311,7 @@ function App() {
           </SectionCard>
 
           <SectionCard icon={Gift} title="Recepción">
-            <p className="font-title text-3xl font-semibold tracking-wide text-navy-950">Recepción</p>
+            <p className="font-title text-3xl font-semibold tracking-wide text-navy-950"></p>
             <p className="mt-2 flex items-center gap-2 font-semibold text-navy-800">
               <Clock size={18} />
               20:00 hrs
@@ -295,20 +340,43 @@ function App() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.35 }}
-            className="rounded-[1.6rem] border border-champagne/45 bg-navy-900 p-7 text-center shadow-gold"
+            className="paper-texture paper-real paper-corner relative overflow-hidden rounded-[1.6rem] p-7 text-center text-navy-950"
           >
-            <GraduationCap className="mx-auto text-champagne" size={38} strokeWidth={1.5} />
-            <p className="mt-4 font-title text-2xl font-semibold tracking-wide text-ivory">
+            <div className="absolute inset-3 rounded-[1.2rem] border border-gold/20" />
+            <GraduationCap className="mx-auto text-gold" size={38} strokeWidth={1.5} />
+            <p className="mt-4 font-title text-2xl font-semibold tracking-wide text-navy-950">
               Gracias por formar parte de este momento tan especial.
             </p>
-            <p className="mt-3 text-sm leading-6 text-ivory/75">
+            <p className="mt-3 text-sm leading-6 text-navy-800">
               Será un honor contar con tu presencia.
             </p>
             <div className="gold-line mx-auto my-5 h-px w-36" />
-            <p className="font-script text-4xl tracking-wide text-champagne">Ing. Denis Guarayo</p>
+            <p className="font-script text-4xl tracking-wide text-gold">Ing. Denis Guarayo</p>
           </motion.footer>
         </div>
       </div>
+      <motion.button
+        type="button"
+        onClick={handleMusicToggle}
+        drag
+        dragMomentum={false}
+        onDragStart={() => {
+          isDraggingMusicButton.current = true;
+        }}
+        onDragEnd={() => {
+          window.setTimeout(() => {
+            isDraggingMusicButton.current = false;
+          }, 120);
+        }}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.96 }}
+        className="fixed bottom-5 right-4 z-50 flex h-14 w-14 cursor-grab items-center justify-center rounded-full border border-champagne bg-ivory text-navy-950 shadow-gold transition duration-300 hover:bg-[#fffaf0] active:cursor-grabbing focus:outline-none focus:ring-2 focus:ring-champagne"
+        style={{ touchAction: "none" }}
+        aria-label={isMusicPlaying ? "Pausar música" : "Tocar música"}
+        title={isMusicPlaying ? "Pausar música" : "Tocar música"}
+      >
+        {isMusicPlaying ? <Pause size={24} fill="currentColor" /> : <Play size={24} fill="currentColor" />}
+      </motion.button>
     </main>
   );
 }
