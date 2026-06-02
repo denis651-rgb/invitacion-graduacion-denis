@@ -162,7 +162,30 @@ function ImageWithFallback({ src, alt, type }) {
 function App() {
   const audioRef = useRef(null);
   const isDraggingMusicButton = useRef(false);
+  const hasUserStartedMusic = useRef(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
+  const playMusic = async ({ restart = false } = {}) => {
+    const audio = audioRef.current;
+
+    if (!audio) {
+      return false;
+    }
+
+    try {
+      if (restart) {
+        audio.currentTime = 0;
+      }
+
+      await audio.play();
+      hasUserStartedMusic.current = true;
+      setIsMusicPlaying(true);
+      return true;
+    } catch (error) {
+      console.error("No se pudo reproducir la música:", error);
+      return false;
+    }
+  };
 
   const handleMusicToggle = async (event) => {
     if (isDraggingMusicButton.current) {
@@ -182,13 +205,46 @@ function App() {
       return;
     }
 
-    try {
-      await audio.play();
-      setIsMusicPlaying(true);
-    } catch (error) {
-      console.error("No se pudo reproducir la música:", error);
-    }
+    await playMusic();
   };
+
+  useEffect(() => {
+    const playOnFirstInteraction = () => {
+      if (!hasUserStartedMusic.current) {
+        playMusic();
+      }
+    };
+
+    const pauseMusic = () => {
+      const audio = audioRef.current;
+
+      if (audio) {
+        audio.pause();
+      }
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        pauseMusic();
+      }
+    };
+
+    playMusic({ restart: true });
+
+    window.addEventListener("pointerdown", playOnFirstInteraction, { once: true });
+    window.addEventListener("keydown", playOnFirstInteraction, { once: true });
+    window.addEventListener("pagehide", pauseMusic);
+    window.addEventListener("beforeunload", pauseMusic);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      window.removeEventListener("pointerdown", playOnFirstInteraction);
+      window.removeEventListener("keydown", playOnFirstInteraction);
+      window.removeEventListener("pagehide", pauseMusic);
+      window.removeEventListener("beforeunload", pauseMusic);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   return (
     <main className="min-h-screen px-4 py-6 text-navy-950">
@@ -312,6 +368,10 @@ function App() {
 
           <SectionCard icon={Gift} title="Recepción">
             <p className="font-title text-3xl font-semibold tracking-wide text-navy-950"></p>
+            <p className="mt-2 flex items-center gap-2 font-semibold text-navy-800">
+              <Calendar size={18} />
+              Sábado 20 de junio de 2026
+            </p>
             <p className="mt-2 flex items-center gap-2 font-semibold text-navy-800">
               <Clock size={18} />
               20:00 hrs
